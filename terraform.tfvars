@@ -1,0 +1,13 @@
+compute_az = "ap-south-1a"
+publicsubnet1_az = "ap-south-1a"
+publicsubnet2_az = "ap-south-1b"
+pvtsubnet1_az = "ap-south-1a"
+instancetype = "t2.micro"
+image_id = "ami-04db49c0fb2215364"
+keyname = "smarak"
+ebstype = "gp2"
+ebssize = 10
+vpc_cidr = "12.0.0.0/16"
+pub_subnetcidr1 = "12.0.1.0/24"
+pub_subnetcidr2 = "12.0.3.0/24"
+pvt_subnetcidr = "12.0.2.0/24"
