@@ -32,8 +32,15 @@ resource "aws_lb" "pub-alb" {
   internal           = false
   load_balancer_type = "application"
   security_groups    = [aws_security_group.allow_http.id]
+  
+  subnet_mapping {
+    subnet_id     = aws_subnet.public1.id
+  }
+    subnet_mapping {
+    subnet_id     = aws_subnet.public2.id
+  }
  #Manually update required for subnet id 
- subnets = ["subnet-08315013c61b77944","subnet-0d3aa81da4a4f90b5"]
+ #subnets = ["subnet-08315013c61b77944","subnet-0d3aa81da4a4f90b5"]
   # subnets            = ["aws_subnet.public1.arn","aws_subnet.public2.arn"]
   # subnets = aws_subnet.public.*.id
   # depends_on = [aws_subnet.public1,aws_subnet.public2]
