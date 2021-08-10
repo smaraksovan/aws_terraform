@@ -46,7 +46,7 @@ resource "aws_security_group" "pvt_sg" {
     from_port        = 22
     to_port          = 22
     protocol         = "tcp"
-    cidr_blocks      = ["12.0.1.0/24","12.0.3.0/24"]
+    cidr_blocks      = [aws_subnet.public1.cidr_block,aws_subnet.public2.cidr_block]
     # security_groups  = ["aws_security_group.allow_http.id"]
     # ipv6_cidr_blocks = ["::/0"]
   }
@@ -55,7 +55,7 @@ resource "aws_security_group" "pvt_sg" {
     from_port        = 80
     to_port          = 80
     protocol         = "tcp"
-    cidr_blocks      = ["12.0.1.0/24","12.0.3.0/24","12.0.2.0/24"]
+    cidr_blocks      = [aws_subnet.public1.cidr_block,aws_subnet.public2.cidr_block,aws_subnet.dev_pvt.cidr_block]
     ipv6_cidr_blocks = ["::/0"]
   }
 
@@ -77,7 +77,7 @@ resource "aws_security_group" "pvt_sg" {
 
 resource "aws_instance" "example" {
   ami           = var.image_id
-  count=1
+  # count=1
   key_name = var.keyname
   instance_type = var.instancetype
   vpc_security_group_ids = [aws_security_group.allow_tls.id]
